@@ -1,0 +1,610 @@
+/* ==========================================================================
+   Luxury Hindu Wedding Microsite - Stylesheet
+   Couple: Aditya & Chetna (A & C)
+   Palette: Royal Maroon (#5B0E17, #7A1521, #3A070D), Warm Ivory (#FDFBF7, #F7F3E9),
+            Glowing Gold Foil Gradients (#ECC876, #E5A93C, #FBF0B9)
+   Typography: Cinzel, Great Vibes, Cormorant Garamond
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap');
+
+:root {
+  --color-maroon-dark: #3A070D;
+  --color-maroon-deep: #5B0E17;
+  --color-crimson: #7A1521;
+  --color-crimson-bright: #9E1E2D;
+  --color-ivory: #FDFBF7;
+  --color-ivory-warm: #F7F3E9;
+  --color-gold-start: #FBF0B9;
+  --color-gold-mid: #ECC876;
+  --color-gold-dark: #E5A93C;
+  --color-gold-burnished: #B8860B;
+  --gold-gradient: linear-gradient(135deg, #FBF0B9 0%, #ECC876 50%, #E5A93C 100%);
+  --gold-metallic: linear-gradient(135deg, #ECC876 0%, #FFEAA7 25%, #E5A93C 50%, #FFF5CC 75%, #B8860B 100%);
+  --maroon-gradient: linear-gradient(145deg, #7A1521 0%, #5B0E17 50%, #3A070D 100%);
+  --maroon-rich: linear-gradient(180deg, #5B0E17 0%, #3A070D 100%);
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background-color: #2A0408;
+  color: #2D3748;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif, Georgia;
+}
+
+.font-vibes {
+  font-family: 'Great Vibes', cursive, 'Brush Script MT';
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Gold Text Gradient */
+.text-gold-gradient {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-gold-metallic {
+  background: var(--gold-metallic);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Gold Foil Borders & Accents */
+.border-gold-foil {
+  border-color: #E5A93C;
+  border-image: var(--gold-gradient) 1;
+}
+
+.border-gold-subtle {
+  border: 1px solid rgba(229, 169, 60, 0.45);
+}
+
+.border-gold-double {
+  border: 3px double rgba(229, 169, 60, 0.7);
+}
+
+.bg-gold-gradient {
+  background: var(--gold-gradient);
+}
+
+.bg-maroon-deep {
+  background-color: var(--color-maroon-deep);
+}
+
+.bg-crimson {
+  background-color: var(--color-crimson);
+}
+
+.bg-ivory {
+  background-color: var(--color-ivory);
+}
+
+/* Luxury Shadows */
+.shadow-gold-glow {
+  box-shadow: 0 0 25px rgba(236, 200, 118, 0.55);
+}
+
+.shadow-gold-sm {
+  box-shadow: 0 4px 15px rgba(229, 169, 60, 0.3);
+}
+
+.shadow-maroon-card {
+  box-shadow: 0 10px 30px rgba(91, 14, 23, 0.45);
+}
+
+/* ==========================================================================
+   Envelope Screen & 3D Interactive Opening Architecture
+   Root Cause Fix: Self-contained closed pocket with z-indexed folds.
+   Inner letter (z-index: 10) is tucked BEHIND the bottom pocket (z-index: 20)
+   and covered by the top flap (z-index: 30).
+   ========================================================================== */
+.envelope-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #1F0205;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  perspective: 1400px;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 410px;
+  height: min(640px, 92vh);
+  perspective: 1400px;
+}
+
+@media (min-width: 640px) {
+  .envelope-wrapper {
+    max-width: 460px;
+    height: min(700px, 92vh);
+  }
+}
+
+@media (min-width: 768px) {
+  .envelope-wrapper {
+    max-width: 480px;
+    height: min(740px, 92vh);
+  }
+}
+
+.envelope-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #7A1521 0%, #5B0E17 50%, #3A070D 100%);
+  border-radius: 20px;
+  box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.95), 0 0 0 2px rgba(229, 169, 60, 0.65), 0 0 35px rgba(236, 200, 118, 0.25);
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* Envelope Back Panel & Lining */
+.envelope-back-panel {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #5B0E17 0%, #3A070D 100%);
+  z-index: 1;
+}
+
+/* Inner Letter Card - Tucked behind bottom pocket (z-index: 10) */
+.envelope-letter {
+  position: absolute;
+  inset: 18px;
+  background: var(--color-ivory);
+  border-radius: 14px;
+  border: 1px solid rgba(229, 169, 60, 0.5);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease 0.2s, transform 0.6s ease 0.2s;
+  pointer-events: none;
+}
+
+.envelope-overlay.opened .envelope-letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Envelope Side Folds (Left & Right Wings) */
+.envelope-left-fold {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+  background: linear-gradient(90deg, #7A1521 0%, #5B0E17 100%);
+  clip-path: polygon(0 0, 48% 50%, 0 100%);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-right-fold {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+  background: linear-gradient(-90deg, #7A1521 0%, #5B0E17 100%);
+  clip-path: polygon(100% 0, 52% 50%, 100% 100%);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Envelope Bottom Pocket - Covering the bottom half (z-index: 20) */
+.envelope-bottom-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(0deg, #3A070D 0%, #5B0E17 65%, #7A1521 100%);
+  clip-path: polygon(0 100%, 100% 100%, 50% 46%);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.envelope-bottom-pocket::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 100%, 100% 100%, 50% 46%);
+  border-top: 2px solid #ECC876;
+}
+
+/* 3D Top Triangular Envelope Flap (z-index: 30) */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56%;
+  background: linear-gradient(180deg, #8A1926 0%, #5B0E17 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.8s ease-in-out;
+  z-index: 30;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 640px) {
+  .envelope-flap {
+    height: 57%;
+  }
+}
+
+@media (min-width: 768px) {
+  .envelope-flap {
+    height: 58%;
+  }
+}
+
+.envelope-flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-bottom: 3px solid #ECC876;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.envelope-flap.open {
+  transform: rotateX(180deg);
+  z-index: 12;
+}
+
+/* Upper Envelope Header & Custom Monogram Branding (z-index: 35) */
+.envelope-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  z-index: 35;
+  padding: 1.5rem 1rem 0; /* pt-6 */
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .envelope-header {
+    padding-top: 2.5rem; /* md:pt-10 */
+  }
+}
+
+.envelope-overlay.opened .envelope-header {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.96);
+  pointer-events: none;
+}
+
+/* Seamless Monogram Logo Blend & Soft Circular Mask */
+.envelope-logo-img {
+  mix-blend-mode: screen;
+  filter: contrast(130%) brightness(115%) drop-shadow(0 2px 10px rgba(236, 200, 118, 0.4));
+  -webkit-mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+}
+
+/* Pearl Seal Button (z-index: 40) */
+.pearl-seal {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #FAF6EE 35%, #E5DCB8 70%, #C4B688 100%);
+  border: 3px solid #E5A93C;
+  box-shadow: 
+    0 0 0 4px rgba(236, 200, 118, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 2px 5px rgba(255, 255, 255, 0.98),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 50;
+}
+
+.pearl-seal:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 0 6px rgba(236, 200, 118, 0.8),
+    0 16px 40px rgba(229, 169, 60, 0.65),
+    inset 0 2px 6px rgba(255, 255, 255, 1);
+}
+
+.pearl-seal:active {
+  transform: scale(0.95);
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(236, 200, 118, 0.85);
+  animation: pearlPulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pearlPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.75);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Radial Golden Light Bloom Effect (#lightBurst)
+   Bursts across the viewport for 600ms on tapping TAP TO REVEAL
+   ========================================================================== */
+#lightBurst {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  background: radial-gradient(circle, #ECC876 0%, rgba(255, 255, 255, 0.9) 30%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.1);
+}
+
+#lightBurst.bursting {
+  animation: lightBurstBloom 0.6s ease-out forwards;
+}
+
+@keyframes lightBurstBloom {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.5);
+    opacity: 0.95;
+    filter: brightness(2) drop-shadow(0 0 50px #ECC876);
+  }
+  60% {
+    transform: scale(3.5);
+    opacity: 1;
+    filter: brightness(2.5);
+  }
+  100% {
+    transform: scale(6);
+    opacity: 0;
+    filter: brightness(3);
+  }
+}
+
+/* ==========================================================================
+   Floating Audio Player
+   ========================================================================== */
+.audio-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 18px rgba(236, 200, 118, 0.6);
+  border: 2px solid #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.audio-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(229, 169, 60, 0.8);
+}
+
+.audio-wave-bar {
+  width: 3.5px;
+  height: 12px;
+  background-color: #5B0E17;
+  margin: 0 1.5px;
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.audio-playing .audio-wave-bar:nth-child(1) {
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+}
+.audio-playing .audio-wave-bar:nth-child(2) {
+  animation: soundWave 0.6s ease-in-out 0.2s infinite alternate;
+}
+.audio-playing .audio-wave-bar:nth-child(3) {
+  animation: soundWave 0.9s ease-in-out 0.4s infinite alternate;
+}
+.audio-playing .audio-wave-bar:nth-child(4) {
+  animation: soundWave 0.7s ease-in-out 0.1s infinite alternate;
+}
+
+@keyframes soundWave {
+  0% { height: 4px; }
+  100% { height: 22px; }
+}
+
+/* ==========================================================================
+   Heart Scratch Card Badges
+   ========================================================================== */
+.heart-badge-wrapper {
+  position: relative;
+  width: 104px;
+  height: 98px;
+  margin: 0 auto;
+}
+
+.heart-clip-shape {
+  clip-path: path('M 52,90 C 52,90 8,62 8,32 C 8,14 22,6 36,6 C 44,6 50,12 52,18 C 54,12 60,6 68,6 C 82,6 96,14 96,32 C 96,62 52,90 52,90 Z');
+}
+
+.heart-content-card {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #FFFDF8 0%, #F5EBD4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+.scratch-canvas:active {
+  cursor: grabbing;
+}
+
+.scratch-canvas.revealed {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Ornamental Borders, Corners & Motifs
+   ========================================================================== */
+.ornament-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.ornament-tl { top: 8px; left: 8px; border-top: 2px solid #ECC876; border-left: 2px solid #ECC876; }
+.ornament-tr { top: 8px; right: 8px; border-top: 2px solid #ECC876; border-right: 2px solid #ECC876; }
+.ornament-bl { bottom: 8px; left: 8px; border-bottom: 2px solid #ECC876; border-left: 2px solid #ECC876; }
+.ornament-br { bottom: 8px; right: 8px; border-bottom: 2px solid #ECC876; border-right: 2px solid #ECC876; }
+
+/* Timeline connecting vertical line */
+.timeline-line {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 24px;
+  width: 2px;
+  background: linear-gradient(180deg, #ECC876 0%, #E5A93C 50%, #ECC876 100%);
+}
+
+/* ==========================================================================
+   Aesthetic Wedding Stage Animation
+   ========================================================================== */
+@keyframes floatGently {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes flowerFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.9; }
+  80% { opacity: 0.9; }
+  100% { transform: translateY(120px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes stageGlow {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 10px rgba(236, 200, 118, 0.4)); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 25px rgba(236, 200, 118, 0.85)); }
+}
+
+.animate-stage-float {
+  animation: floatGently 4s ease-in-out infinite;
+}
+
+.animate-stage-glow {
+  animation: stageGlow 3s ease-in-out infinite;
+}
+
+.falling-petal {
+  position: absolute;
+  pointer-events: none;
+  animation: flowerFall 4s linear infinite;
+}
+
+/* ==========================================================================
+   Catalogue Event Cards Styling
+   ========================================================================== */
+.catalogue-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.catalogue-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(91, 14, 23, 0.15), 0 0 15px rgba(229, 169, 60, 0.25);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #3A070D;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5A93C;
+  border-radius: 3px;
+}
+
+/* Smooth Photo Carousel */
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
