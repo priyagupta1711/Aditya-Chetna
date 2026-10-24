@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aditya & Chetna | TWO HEARTS, TWO FAMILIES, ONE CELEBRATION</title>
+  
+  <!-- Google Fonts: Cinzel, Cormorant Garamond, Great Vibes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maroon: {
+              950: '#2A0408',
+              900: '#3A070D',
+              800: '#5B0E17',
+              700: '#7A1521',
+              600: '#9E1E2D',
+              500: '#BA2638'
+            },
+            crimson: {
+              900: '#4A0810',
+              800: '#5B0E17',
+              700: '#7A1521',
+              600: '#9E1E2D'
+            },
+            ivory: {
+              50: '#FDFBF7',
+              100: '#F7F3E9',
+              200: '#EFE8D6',
+              300: '#E5DDC7'
+            },
+            gold: {
+              light: '#FBF0B9',
+              mid: '#ECC876',
+              dark: '#E5A93C',
+              burnished: '#B8860B'
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+            cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],
+            vibes: ['Great Vibes', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti Library CDN (with auto-fallback in script.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#2A0408] md:bg-[#1A0205] text-gray-800 font-cormorant min-h-screen antialiased selection:bg-amber-200 selection:text-maroon-900 overflow-x-hidden flex flex-col items-center justify-start">
+
+  <!-- =========================================================================
+       RADIAL GOLDEN LIGHT BLOOM BURST OVERLAY (#lightBurst)
+       Bursts across the viewport for 600ms on unsealing the envelope
+       ========================================================================= -->
+  <div id="lightBurst" class="light-burst" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       SECTION 1: FIXED FULLSCREEN ENVELOPE INTRO
+       Self-contained, closed pocket:
+       - Deep maroon back panel & side folds (#5B0E17)
+       - Inner letter tucked BEHIND the bottom pocket (z-index: 10)
+       - Solid bottom pocket covering the bottom half (z-index: 20)
+       - Top triangular flap covering the top half (z-index: 30)
+       - Central pearl seal "TAP TO REVEAL" (z-index: 40)
+       ========================================================================= -->
+  <div id="envelopeOverlay" class="envelope-overlay" role="dialog" aria-modal="true" aria-label="Wedding Invitation Envelope">
+    
+    <!-- Background Paisley & Mandala Golden Dot Grid Pattern -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#ECC876_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+
+    <div class="envelope-wrapper relative flex flex-col items-center justify-center">
+      
+      <!-- Envelope Outer Pocket Shell -->
+      <div class="envelope-body relative w-full h-full rounded-2xl border-2 border-[#E5A93C] shadow-2xl overflow-hidden">
+        
+        <!-- LAYER 1: Deep Maroon Back Panel & Lining -->
+        <div class="envelope-back-panel"></div>
+
+        <!-- LAYER 2: Inner Letter Card (z-index: 10) - Tucked BEHIND the bottom pocket & top flap -->
+        <div class="envelope-letter">
+          <!-- Auspicious Top Motif -->
+          <div>
+            <div class="text-amber-700 text-xs sm:text-sm tracking-widest font-cinzel font-bold mb-1">॥ श्री गणेशाय नमः ॥</div>
+            <div class="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
+          </div>
+
+          <!-- Ornate Gold Monogram Logo -->
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-amber-400 bg-gradient-to-br from-[#7A1521] to-[#5B0E17] flex items-center justify-center mx-auto shadow-gold-sm p-1.5 overflow-hidden">
+            <img src="images/logo.png" alt="Aditya & Chetna Monogram" class="envelope-logo-img w-full h-full object-contain" />
+          </div>
+
+          <div>
+            <h2 class="font-vibes text-3xl sm:text-4xl text-maroon-900 leading-tight">Aditya & Chetna</h2>
+            <p class="font-cinzel text-[10px] sm:text-xs text-amber-800 tracking-widest uppercase font-semibold mt-1">Cordially Request Your Presence</p>
+          </div>
+          
+          <div class="bg-amber-50/90 rounded-lg p-2.5 border border-amber-200/80 max-w-xs mx-auto text-[11px] sm:text-xs text-gray-700 italic">
+            "With the divine blessings of Lord Ganesha and our beloved elders, we invite you to celebrate our sacred wedding union."
+          </div>
+          
+          <div class="font-cinzel text-[10px] sm:text-xs text-maroon-800 font-bold uppercase tracking-widest">
+            Gulabo Devi, Jaigaon • Dec 2026
+          </div>
+        </div>
+
+        <!-- LAYER 3: Side Fold Wings (Left & Right) to prevent side gaps -->
+        <div class="envelope-left-fold"></div>
+        <div class="envelope-right-fold"></div>
+
+        <!-- LAYER 4: Solid Bottom Pocket (z-index: 20) - Covering the bottom half -->
+        <div class="envelope-bottom-pocket">
+          <!-- Bottom Corner Filigrees -->
+          <div class="ornament-corner ornament-bl"></div>
+          <div class="ornament-corner ornament-br"></div>
+        </div>
+
+        <!-- LAYER 5: 3D Top Triangular Flap (z-index: 30) - Covering the top half -->
+        <div id="envelopeFlap" class="envelope-flap">
+          <!-- Top Corner Filigrees -->
+          <div class="ornament-corner ornament-tl"></div>
+          <div class="ornament-corner ornament-tr"></div>
+        </div>
+
+        <!-- Upper Envelope Header & Custom Monogram Branding (z-index: 35, positioned above pearl seal) -->
+        <div id="envelopeHeader" class="envelope-header pointer-events-none pt-6 md:pt-10">
+          <!-- Substantially Sized Monogram Logo Container -->
+          <div class="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto flex items-center justify-center mb-0 md:mb-0">
+            <img 
+              src="images/logo.png" 
+              alt="Aditya & Chetna Monogram" 
+              class="envelope-logo-img w-full h-full object-contain block mx-auto drop-shadow-[0_4px_16px_rgba(236,200,118,0.6)]" 
+            />
+          </div>
+
+          <!-- Couple Names in Bold Letterspaced Gold Serif -->
+          <h2 class="text-base sm:text-lg md:text-xl font-cinzel font-serif font-bold tracking-[0.25em] text-[#ECC876] uppercase leading-tight drop-shadow-sm">
+            ADITYA & CHETNA
+          </h2>
+
+          <!-- Subtitle in Warm Ivory / Gold -->
+          <p class="text-[10px] md:text-xs font-cinzel tracking-widest text-amber-200/80 uppercase mt-1">
+            TWO HEARTS, TWO FAMILIES, ONE CELEBRATION
+          </p>
+        </div>
+
+        <!-- LAYER 6: Pearl Seal Button (z-index: 40) - Centered at the flap apex with 20px-30px clearance -->
+        <div id="pearlSealWrapper" class="absolute top-[55%] sm:top-[56%] md:top-[57%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 transition-all duration-500">
+          <div class="relative">
+            <div class="pulse-ring"></div>
+            <button id="pearlSeal" class="pearl-seal focus:outline-none focus:ring-4 focus:ring-amber-300 group" aria-label="Tap pearl seal to reveal the wedding invitation">
+              <span class="text-xs uppercase tracking-widest font-cinzel font-bold text-maroon-900 text-center leading-tight px-1">
+                TAP TO<br><span class="text-[10px] text-amber-800 font-black">REVEAL</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 2: FLOATING AUDIO PLAYER
+       Fixed circular toggle with wedding background music starting at 0:26
+       ========================================================================= -->
+  <div class="audio-fab" id="audioFab" role="button" tabindex="0" aria-label="Toggle Wedding Music" title="Play/Mute Wedding Music">
+    <div class="flex items-center justify-center h-full space-x-1" id="audioWaveBars">
+      <div class="audio-wave-bar"></div>
+      <div class="audio-wave-bar"></div>
+      <div class="audio-wave-bar"></div>
+      <div class="audio-wave-bar"></div>
+    </div>
+  </div>
+
+  <!-- Background Music Audio Loop (Starts at 0:26) -->
+  <audio id="wedding-music" preload="auto" loop>
+    <source src="images/music.mp3" type="audio/mpeg" />
+  </audio>
+
+
+  <!-- =========================================================================
+       CENTRAL RESPONSIVE CONTAINER (w-full max-w-md md:max-w-xl mx-auto)
+       Mobile-first app feel on phone; centered luxury card column on tablet/desktop
+       ========================================================================= -->
+  <div class="w-full max-w-md md:max-w-xl mx-auto min-h-screen shadow-2xl relative bg-[#FDFBF7] border-x border-[#E5A93C]/40 overflow-hidden">
+
+    <!-- Top Sticky Gold Bar with Re-Open Envelope Trigger -->
+    <header class="bg-[#5B0E17] text-amber-200 px-4 py-2.5 flex items-center justify-between border-b border-[#E5A93C]/50 sticky top-0 z-40 backdrop-blur-md bg-opacity-95 shadow-sm">
+      <div class="flex items-center space-x-2">
+        <span class="w-6 h-6 rounded-full border border-amber-400 flex items-center justify-center font-cinzel text-xs text-amber-300 font-bold bg-[#3A070D]">
+          ॐ
+        </span>
+        <span class="font-cinzel text-xs md:text-sm tracking-widest text-amber-100 font-bold">ADITYA & CHETNA</span>
+      </div>
+      <button id="reopenEnvelopeBtn" class="text-[11px] md:text-xs font-cinzel uppercase tracking-wider text-amber-300 hover:text-white px-2.5 py-1 rounded border border-amber-400/50 hover:border-amber-300 transition-colors">
+        ✉ Re-Open Envelope
+      </button>
+    </header>
+
+
+    <!-- =======================================================================
+         SECTION 3: HERO SCREEN (REVEAL & AUSPICIOUS BLESSING)
+         Hindu Header: ॥ श्री गणेशाय नमः ॥, Heading: "We are getting Married",
+         Aditya & Chetna, Responsive Hero Stage Image Slot, Chevron
+         ======================================================================= -->
+    <section id="heroSection" class="relative bg-gradient-to-b from-[#5B0E17] via-[#5B0E17] to-[#3A070D] text-white pt-8 pb-12 px-4 sm:px-6 md:px-8 text-center overflow-hidden">
+      
+      <!-- Subtle Golden Mandala Background -->
+      <div class="absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center">
+        <svg class="w-96 h-96 text-amber-300" viewBox="0 0 200 200" fill="currentColor">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2,4"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="0.5"/>
+          <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <path d="M100 10 L105 35 L125 20 L115 45 L140 40 L120 60 L145 70 L120 80 L145 100 L120 110 L145 130 L120 140 L140 160 L115 155 L125 180 L105 165 L100 190 L95 165 L75 180 L85 155 L60 160 L80 140 L55 130 L80 110 L55 100 L80 80 L55 70 L80 60 L60 40 L85 45 L75 20 L95 35 Z" fill="none" stroke="currentColor" stroke-width="0.6"/>
+        </svg>
+      </div>
+
+      <!-- Traditional Hindu Invocation Header: ॥ श्री गणेशाय नमः ॥ -->
+      <div class="relative z-10 mb-4 inline-flex flex-col items-center">
+        <div class="w-16 h-16 md:w-18 md:h-18 rounded-full border-2 border-amber-300 p-1 bg-gradient-to-br from-amber-200/20 to-amber-500/30 backdrop-blur-sm shadow-gold-sm flex items-center justify-center">
+          <svg class="w-10 h-10 text-amber-300" viewBox="0 0 100 100" fill="currentColor" aria-label="Ganesha Sacred Symbol">
+            <path d="M50 15 C45 15 40 20 40 25 C40 32 46 36 50 36 C54 36 60 32 60 25 C60 20 55 15 50 15 Z M42 40 C35 43 30 50 30 60 C30 75 42 85 58 85 C68 85 75 78 75 70 C75 62 68 56 60 56 C53 56 50 60 48 62 C46 64 43 64 42 62 C40 59 42 55 46 51 C52 46 62 44 68 40 C65 37 57 37 52 38 C48 39 45 39 42 40 Z M52 23 C52 21 51 20 50 20 C49 20 48 21 48 23 C48 24 49 25 50 25 C51 25 52 24 52 23 Z M65 24 C68 28 68 34 64 38 C68 36 71 31 71 27 C71 22 68 18 64 16 C66 18 66 21 65 24 Z" />
+          </svg>
+        </div>
+        <span class="font-cinzel text-amber-200 text-sm md:text-base font-bold tracking-widest mt-2">॥ श्री गणेशाय नमः ॥</span>
+        <span class="text-amber-100/80 text-[11px] md:text-xs font-cormorant italic mt-0.5">"वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥"</span>
+      </div>
+
+      <!-- Main Header -->
+      <div class="relative z-10 mb-4">
+        <p class="font-cinzel text-xs md:text-sm tracking-[0.25em] uppercase text-amber-300 font-bold mb-1">
+          WE ARE GETTING MARRIED
+        </p>
+        <h1 class="font-royal-script text-3xl sm:text-4xl md:text-5xl text-amber-100 font-normal leading-tight drop-shadow-md">
+  Aditya <span class="font-cormorant text-amber-300 text-2xl sm:text-3xl md:text-4xl italic font-light px-1">&</span> Chetna
+</h1>
+        <div class="w-24 md:w-32 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <!-- HERO COUPLE STAGE BANNER IMAGE SLOT (images/hero-couple.jpg) -->
+      <div class="relative z-10 w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex flex-col items-center justify-center p-1 group">
+        <!-- Aesthetic Fallback Background & Label (Visible only if image fails to load) -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+          <div class="w-12 h-12 rounded-full border border-amber-300/40 flex items-center justify-center mb-2 bg-[#35050B]">
+            <span class="text-2xl">👑</span>
+          </div>
+          <span class="font-cinzel text-xs md:text-sm text-amber-200/80 uppercase tracking-widest font-bold">Aditya & Chetna</span>
+          <span class="font-cinzel text-[10px] text-amber-300/60 uppercase tracking-wider mt-0.5">Hero Couple Stage Banner</span>
+          <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/hero-couple.jpg</span>
+        </div>
+
+        <!-- Local Image Asset: Balanced, Centered & Uncropped -->
+        <img src="images/hero-couple.jpg" 
+             alt="Aditya and Chetna - We are getting Married" 
+             class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10"
+             onerror="this.style.display='none'">
+
+        <!-- Ambient Gold Title Tag -->
+        <div class="w-full text-center bg-black/75 backdrop-blur-md py-2 px-3 border-t border-amber-300/40 z-20 relative rounded-b-xl mt-1">
+          <span class="font-cinzel text-[11px] md:text-xs text-amber-200 font-semibold tracking-widest uppercase">
+            Aditya & Chetna
+          </span>
+        </div>
+      </div>
+
+      <!-- Family Invitation Blessing Text -->
+      <div class="relative z-10 max-w-sm md:max-w-md mx-auto px-2 mt-4">
+        <p class="text-sm md:text-base leading-relaxed text-amber-50/90 font-serif text-center">
+  ॥ श्री गणेशाय नमः ॥<br><br>
+  With the divine grace of Lord Ganesha and the sacred blessings of our revered ancestors and elders, 
+  the <strong class="text-amber-300 font-semibold tracking-wide">Gupta &amp; Pradhan</strong> families 
+  cordially invite you to grace the auspicious union of<br><br>
+  <span class="text-lg md:text-xl font-bold text-amber-200 tracking-wider">Aditya &amp; Chetna</span><br><br>
+  पवित्र अग्नि के सामने सात फेरे लेकर अपने जीवन के इस नए सफर की शुरुआत करते हुए, उन्हें अपना प्यार और आशीर्वाद देने के लिए आप ज़रूर पधारें।
+</p>
+      </div>
+
+      <!-- Animated Scroll to Explore Chevron Indicator -->
+      <div class="relative z-10 mt-8 flex flex-col items-center justify-center animate-bounce">
+        <a href="#familySection" class="inline-flex flex-col items-center text-amber-300 hover:text-white transition-colors" aria-label="Scroll to explore family details and wedding celebrations">
+          <span class="font-cinzel text-[11px] md:text-xs uppercase tracking-[0.25em] font-bold mb-1">SCROLL TO EXPLORE</span>
+          <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </a>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 4: FAMILY DETAILS SECTION
+         Ivory card with gold borders featuring two columns:
+         - Groom: Aditya Gupta & Family
+         - Bride: Chetna Pradhan & Family
+         ======================================================================= -->
+    <section id="familySection" class="py-10 md:py-14 px-4 sm:px-6 md:px-8 bg-[#FDFBF7] relative border-b border-amber-300/40">
+      
+      <!-- Section Title -->
+      <div class="text-center mb-8">
+        <span class="font-cinzel text-xs md:text-sm tracking-[0.25em] uppercase text-maroon-800 font-bold">Two Families, One Sacred Bond</span>
+        <h2 class="font-cinzel text-2xl md:text-3xl font-extrabold text-maroon-900 mt-1">WITH ELDERS' BLESSINGS</h2>
+        <p class="font-cormorant text-gray-700 text-sm md:text-base italic mt-1">Guiding hands, loving hearts, and eternal traditions</p>
+        <div class="w-20 md:w-28 h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <!-- Responsive Family Details Card: 1-col on mobile, 2-col on md+ -->
+      <div class="bg-white rounded-2xl p-5 md:p-6 border-2 border-amber-400 shadow-xl relative w-full max-w-md md:max-w-lg mx-auto">
+        
+        <!-- Corner Gold Filigree -->
+        <div class="ornament-corner ornament-tl"></div>
+        <div class="ornament-corner ornament-tr"></div>
+        <div class="ornament-corner ornament-bl"></div>
+        <div class="ornament-corner ornament-br"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-4">
+          
+          <!-- Column 1: Groom's Family -->
+          <div class="bg-gradient-to-b from-[#FDFBF7] to-[#F7F3E9] rounded-xl p-4 border border-amber-300/80 shadow-sm relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 mb-2 pb-2 border-b border-amber-300/60">
+                <span class="w-7 h-7 rounded-full bg-maroon-800 text-amber-200 flex items-center justify-center text-xs font-bold font-cinzel">
+                  👑
+                </span>
+                <div>
+                  <span class="font-cinzel text-[10px] tracking-widest text-amber-800 font-bold uppercase block"></span>
+                  <h3 class="font-cinzel text-base font-extrabold text-maroon-900 leading-tight">Aditya Gupta</h3>
+                </div>
+              </div>
+
+              <div class="space-y-2 text-xs md:text-[13px] font-cormorant text-gray-800">
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Grandparents:</strong>
+                  Lt. Rameshwar Prasad &  Lt. Panpari Devi
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Parents:</strong>
+                  Mithilesh Kumar Gupta & Indu Devi Gupta
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Uncle & Aunt:</strong>
+                  Manoj Kumar Gupta & Sangeeta Devi Gupta
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Brother-in-law & Sister:</strong>
+                  Amar Shaw & Neha Gupta
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Siblings:</strong>
+                  Anjali Gupta, Amit Gupta, Priya Gupta, Riya Gupta, Naitik Gupta
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Nieces:</strong>
+                  Ananya Shaw, Anshika Shaw
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Bride's Family -->
+          <div class="bg-gradient-to-b from-[#FDFBF7] to-[#F7F3E9] rounded-xl p-4 border border-amber-300/80 shadow-sm relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 mb-2 pb-2 border-b border-amber-300/60">
+                <span class="w-7 h-7 rounded-full bg-maroon-800 text-amber-200 flex items-center justify-center text-xs font-bold font-cinzel">
+                  🌸
+                </span>
+                <div>
+                  <span class="font-cinzel text-[10px] tracking-widest text-amber-800 font-bold uppercase block"></span>
+                  <h3 class="font-cinzel text-base font-extrabold text-maroon-900 leading-tight">Chetna Pradhan</h3>
+                </div>
+              </div>
+
+              <div class="space-y-2 text-xs md:text-[13px] font-cormorant text-gray-800">
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Grandfather:</strong>
+                  Sher Bahadur Pradhan
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Parents:</strong>
+                  Ramesh Pradhan & Laxmi Pradhan
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Brother & Sister-in-law:</strong>
+                  Bishan Pradhan & Narmada Pradhan
+                </p>
+                <p>
+                  <strong class="font-cinzel font-bold text-maroon-800 text-[11px] block">Niece:</strong>
+                  Kaveri Pradhan
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 5: INTERACTIVE SCRATCH CARD & LIVE COUNTDOWN
+         3 Scratchable Hearts: Date (12), Month (DEC), Year (2026).
+         Live countdown container is STRICTLY HIDDEN on page load,
+         reveals only after all 3 hearts reach >= 35% scratched area.
+         Countdown targets December 12, 2026, 22:30:00 IST.
+         ======================================================================= -->
+    <section id="scratchSection" class="py-10 md:py-14 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-[#7A1521] via-[#5B0E17] to-[#3A070D] text-white relative">
+      
+      <!-- Ornamental Gold Corners -->
+      <div class="ornament-corner ornament-tl"></div>
+      <div class="ornament-corner ornament-tr"></div>
+      <div class="ornament-corner ornament-bl"></div>
+      <div class="ornament-corner ornament-br"></div>
+
+      <!-- Section Title -->
+      <div class="text-center mb-8 relative z-10">
+        <span class="font-cinzel text-xs md:text-sm tracking-widest uppercase text-amber-300 font-bold">Mark Your Calendars</span>
+        <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-amber-100 mt-1">SCRATCH TO REVEAL OUR DATE</h2>
+        <p class="font-cormorant text-amber-200/80 text-sm md:text-base italic mt-1">Rub your finger or cursor over each gold heart below</p>
+        <div class="w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <!-- Three Interactive Scratch Heart Badges -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-xs sm:max-w-sm mx-auto mb-6 relative z-10">
+        
+        <!-- Heart 1: Date -->
+        <div class="flex flex-col items-center">
+          <div class="heart-badge-wrapper">
+            <div class="w-full h-full heart-clip-shape bg-amber-400 p-0.5 shadow-gold-sm relative">
+              <div class="heart-content-card heart-clip-shape">
+                <span class="font-cinzel text-[10px] text-amber-800 font-bold uppercase tracking-wider mt-4">DATE</span>
+                <span class="font-cinzel text-2xl font-black text-maroon-900 leading-none">12</span>
+                <span class="text-[9px] text-amber-900 font-semibold font-cinzel">SAT</span>
+              </div>
+              <canvas id="scratchDateCanvas" class="scratch-canvas heart-clip-shape" aria-label="Scratch to reveal wedding date"></canvas>
+            </div>
+          </div>
+          <span class="font-cinzel text-xs md:text-sm text-amber-200 font-semibold mt-2">Date</span>
+        </div>
+
+        <!-- Heart 2: Month -->
+        <div class="flex flex-col items-center">
+          <div class="heart-badge-wrapper">
+            <div class="w-full h-full heart-clip-shape bg-amber-400 p-0.5 shadow-gold-sm relative">
+              <div class="heart-content-card heart-clip-shape">
+                <span class="font-cinzel text-[10px] text-amber-800 font-bold uppercase tracking-wider mt-4">MONTH</span>
+                <span class="font-cinzel text-xl font-black text-maroon-900 leading-none">DEC</span>
+                <span class="text-[9px] text-amber-900 font-semibold font-cinzel">WINTER</span>
+              </div>
+              <canvas id="scratchMonthCanvas" class="scratch-canvas heart-clip-shape" aria-label="Scratch to reveal wedding month"></canvas>
+            </div>
+          </div>
+          <span class="font-cinzel text-xs md:text-sm text-amber-200 font-semibold mt-2">Month</span>
+        </div>
+
+        <!-- Heart 3: Year -->
+        <div class="flex flex-col items-center">
+          <div class="heart-badge-wrapper">
+            <div class="w-full h-full heart-clip-shape bg-amber-400 p-0.5 shadow-gold-sm relative">
+              <div class="heart-content-card heart-clip-shape">
+                <span class="font-cinzel text-[10px] text-amber-800 font-bold uppercase tracking-wider mt-4">YEAR</span>
+                <span class="font-cinzel text-xl font-black text-maroon-900 leading-none">2026</span>
+                <span class="text-[9px] text-amber-900 font-semibold font-cinzel">FOREVER</span>
+              </div>
+              <canvas id="scratchYearCanvas" class="scratch-canvas heart-clip-shape" aria-label="Scratch to reveal wedding year"></canvas>
+            </div>
+          </div>
+          <span class="font-cinzel text-xs md:text-sm text-amber-200 font-semibold mt-2">Year</span>
+        </div>
+
+      </div>
+
+      <!-- Quick Reveal Helper Link -->
+      <div class="text-center mb-6 relative z-10">
+        <button id="quickRevealBtn" class="text-xs md:text-sm text-amber-300/80 hover:text-amber-200 underline font-cormorant transition-colors">
+          Tap here to reveal full date instantly ✨
+        </button>
+      </div>
+
+      <!-- Success Notification Banner when Unlocked -->
+      <div id="dateUnlockedMessage" class="hidden text-center mb-6 py-2 px-4 bg-amber-400 text-maroon-950 rounded-xl font-cinzel font-bold text-xs md:text-sm tracking-wider shadow-lg max-w-xs sm:max-w-sm mx-auto">
+        ✨ DATE UNLOCKED: 12TH DECEMBER 2026 ✨
+      </div>
+
+      <!-- Live Wedding Countdown Clock - STRICTLY HIDDEN ON PAGE LOAD -->
+      <div id="liveCountdownSection" style="display: none;" class="opacity-0 translate-y-6 transition-all duration-700 pointer-events-none bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-amber-400/50 w-full max-w-sm md:max-w-md mx-auto text-center">
+        <p id="countdownLabel" class="font-cinzel text-xs md:text-sm tracking-[0.2em] text-amber-300 uppercase font-bold mb-3">
+          COUNTDOWN TO DECEMBER 12, 2026 • 10:30 PM (PHERAS)
+        </p>
+
+        <div class="grid grid-cols-4 gap-2 sm:gap-3">
+          <!-- Days -->
+          <div class="bg-gradient-to-b from-[#3A070D] to-[#250307] rounded-xl p-2.5 sm:p-3 border border-amber-400/40 shadow-inner">
+            <span id="countDays" class="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">00</span>
+            <span class="block text-[10px] sm:text-xs font-cinzel uppercase tracking-wider text-amber-300/70 mt-1">Days</span>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-gradient-to-b from-[#3A070D] to-[#250307] rounded-xl p-2.5 sm:p-3 border border-amber-400/40 shadow-inner">
+            <span id="countHours" class="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">00</span>
+            <span class="block text-[10px] sm:text-xs font-cinzel uppercase tracking-wider text-amber-300/70 mt-1">Hours</span>
+          </div>
+
+          <!-- Minutes -->
+          <div class="bg-gradient-to-b from-[#3A070D] to-[#250307] rounded-xl p-2.5 sm:p-3 border border-amber-400/40 shadow-inner">
+            <span id="countMins" class="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">00</span>
+            <span class="block text-[10px] sm:text-xs font-cinzel uppercase tracking-wider text-amber-300/70 mt-1">Mins</span>
+          </div>
+
+          <!-- Seconds -->
+          <div class="bg-gradient-to-b from-[#3A070D] to-[#250307] rounded-xl p-2.5 sm:p-3 border border-amber-400/40 shadow-inner">
+            <span id="countSecs" class="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">00</span>
+            <span class="block text-[10px] sm:text-xs font-cinzel uppercase tracking-wider text-amber-300/70 mt-1">Secs</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 6: WEDDING ITINERARY (INDIVIDUAL FULL-WIDTH CATALOGUE CARDS)
+         Dedicated Catalogue Cards per Function with Event-Specific Styling,
+         Timing, and Clean Local Image Slots:
+         1. Matkor: 10/12/2026 at 4:00 PM (assets/images/matkor.jpg)
+         2. Haldi: 11/12/2026 at 11:00 AM (assets/images/haldi.jpg)
+         3. Sangeet: 11/12/2026 at 6:00 PM (assets/images/sangeet.jpg)
+         4. Baarat: 12/12/2026 at 4:00 PM (assets/images/baarat.jpg)
+         5. Jaimala: 12/12/2026 at 8:00 PM (assets/images/jaimala.jpg)
+         6. Pheras: 12/12/2026 at 10:30 PM (assets/images/pheras.jpg)
+         ======================================================================= -->
+    <section class="py-10 md:py-14 px-4 sm:px-6 md:px-8 bg-[#FDFBF7] relative">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-10">
+        <span class="font-cinzel text-xs md:text-sm tracking-[0.25em] uppercase text-maroon-800 font-bold">Chronicles of Celebration</span>
+        <h2 class="font-cinzel text-2xl md:text-3xl font-extrabold text-maroon-900 mt-1">WEDDING ITINERARY</h2>
+        <p class="font-cormorant text-gray-700 text-sm md:text-base italic mt-1">Sacred rituals, musical rhythms, and the auspicious muhurat</p>
+        <div class="w-20 md:w-28 h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <div class="space-y-8 w-full max-w-md md:max-w-lg mx-auto">
+        
+        <!-- ===================================================================
+             1. MATKOR (10/12/2026 at 4:00 PM) - Yellow theme accent
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-[#F4D03F] shadow-lg relative bg-gradient-to-b from-[#FFFDF2] to-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-yellow-100 text-yellow-900 border border-yellow-300">
+              💛 SACRED SOIL RITUAL
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">10/12/2026 • 4:00 PM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Matkor Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🏺</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Matkor Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/matkor.jpg</span>
+            </div>
+            <img src="images/matkor.jpg" 
+                 alt="Matkor Ceremony - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">Matkor Ceremony</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Thursday, December 10, 2026 • 4:00 PM</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+            शादी की शुरुआत में धरती माता और अपने कुलदेवता को पूजने की यह प्यारी सी रस्म, ताकि वे हमारे आदित्य और चेतना पर अपना आशीर्वाद बनाए रखें और पूरा ब्याह हँसी-खुशी संपन्न हो।
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+            <span>📍 Venue: Gulabo Devi, Jaigaon</span>
+            <span class="text-amber-800 font-bold">Theme: Yellow 🌼</span>
+          </div>
+        </article>
+
+
+        <!-- ===================================================================
+             2. HALDI (11/12/2026 at 11:00 AM) - Pink theme accent
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-[#F06292] shadow-lg relative bg-gradient-to-b from-[#FFF5F8] to-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-pink-100 text-pink-900 border border-pink-300">
+              💖 SUNSHINE & FLORAL HALDI
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">11/12/2026 • 11:00 AM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Haldi Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🌸</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Haldi Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/haldi.jpg</span>
+            </div>
+            <img src="images/haldi.jpg" 
+                 alt="Haldi Ceremony - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">Haldi Ceremony</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Friday, December 11, 2026 • 11:00 AM</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+            गीत-संगीत, ताज़े फूलों की खुशबू और प्यार भरी हल्दी के साथ एक खूबसूरत सुबह, जहाँ हम सब मिलकर अपने आदित्य और चेतना को ढेर सारा प्यार और दुआएं देंगे।
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-pink-50 p-2.5 rounded-lg border border-pink-200">
+            <span>📍 Venue: Gulabo Devi, Jaigaon</span>
+            <span class="text-pink-800 font-bold">Theme: Baby Pink 🌸</span>
+          </div>
+        </article>
+
+
+        <!-- ===================================================================
+             3. SANGEET (11/12/2026 at 6:00 PM)
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-purple-400 shadow-lg relative bg-gradient-to-b from-[#FAF5FF] to-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-purple-100 text-purple-900 border border-purple-300">
+              🪘 MUSICAL GALA NIGHT
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">11/12/2026 • 6:00 PM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Sangeet Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🪘</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Sangeet Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/sangeet.jpg</span>
+            </div>
+            <img src="images/sangeet.jpg" 
+                 alt="Sangeet Sandhya - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">Sangeet Sandhya</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Friday, December 11, 2026 • 6:00 PM</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+            ढोल की थाप, जगमगाती रोशनी और परिवार के धमाकेदार डांस के साथ एक यादगार शाम—जहाँ हम सब मिलकर आदित्य और चेतना के संग देर रात तक झूमने और जश्न मनाने वाले हैं!
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-purple-50 p-2.5 rounded-lg border border-purple-200">
+            <span>📍 Venue: Gulabo Devi, Jaigaon</span>
+            <span class="text-purple-800 font-bold">Theme: Royal Evening Glamour ✨</span>
+          </div>
+        </article>
+
+
+        <!-- ===================================================================
+             4. BAARAT (12/12/2026 at 4:00 PM)
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-amber-500 shadow-lg relative bg-gradient-to-b from-[#FFFDF9] to-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-red-100 text-maroon-900 border border-red-300">
+              🎺 THE ROYAL PROCESSION
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">12/12/2026 • 4:00 PM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Baarat Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🎺</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Baarat Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/baarat.jpg</span>
+            </div>
+            <img src="images/baarat.jpg" 
+                 alt="The Grand Baarat - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">The Grand Baarat</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Saturday, December 12, 2026 • 4:00 PM</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+           बैंड-बाजे की धुन, ढोल के धमाकेदार ताल और पूरे परिवार के नाच-गाने के साथ हमारे दूल्हे राजा आदित्य की शान से बारात निकलेगी, जहाँ दोनों परिवारों का प्यार भरा मिलन होगा।
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+            <span>📍 Venue: Gupta Niwas, Jaigaon</span>
+          </div>
+        </article>
+
+
+        <!-- ===================================================================
+             5. JAIMALA (12/12/2026 at 8:00 PM)
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-rose-400 shadow-lg relative bg-gradient-to-b from-[#FFF9FA] to-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-rose-100 text-rose-900 border border-rose-300">
+              🌹 THE SACRED GARLAND EXCHANGE
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">12/12/2026 • 8:00 PM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Jaimala Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🌹</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Jaimala Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/jaimala.jpg</span>
+            </div>
+            <img src="images/jaimala.jpg" 
+                 alt="Jaimala Ceremony - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">Jaimala Ceremony</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Saturday, December 12, 2026 • 8:00 PM</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+            फूलों की बारिश, पटाखों की चमक और अपनों की तालियों के बीच वह सबसे ख़ास पल—जब हमारे आदित्य और चेतना एक-दूसरे को वरमाला पहनाकर ज़िंदगी भर का साथी चुनेंगे।
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-rose-50 p-2.5 rounded-lg border border-rose-200">
+            <span>📍 Venue: Gulabo Devi Central Mandap</span>
+          </div>
+        </article>
+
+
+        <!-- ===================================================================
+             6. PHERAS (12/12/2026 at 10:30 PM)
+             =================================================================== -->
+        <article class="catalogue-card bg-white rounded-2xl p-5 md:p-6 border-2 border-amber-600 shadow-xl relative bg-gradient-to-b from-[#FFFDF8] to-[#FFF8EE]">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] md:text-xs font-cinzel font-bold tracking-wider bg-amber-100 text-maroon-950 border border-amber-400 font-bold">
+              🔥 THE SACRED VOWS & PHERAS
+            </span>
+            <span class="font-cinzel text-xs md:text-sm font-bold text-maroon-800">12/12/2026 • 10:30 PM</span>
+          </div>
+
+          <!-- Clean Local Image Slot: Pheras Ceremony -->
+          <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+              <span class="text-2xl mb-1 opacity-70">🔥</span>
+              <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Pheras Ceremony Photo</span>
+              <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/pheras.jpg</span>
+            </div>
+            <img src="images/pheras.jpg" 
+                 alt="Sacred Pheras & Saptapadi - Aditya & Chetna" 
+                 loading="lazy"
+                 class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-[1.01]"
+                 onerror="this.style.display='none'">
+          </div>
+
+          <h3 class="font-cinzel text-xl md:text-2xl font-bold text-maroon-900">Sacred Pheras & Saptapadi</h3>
+          <p class="text-xs md:text-sm text-amber-800 font-semibold mb-2">Saturday, December 12, 2026 • 10:30 PM (Auspicious Muhurat)</p>
+          <p class="font-cormorant text-sm md:text-base text-gray-700 leading-relaxed mb-3">
+            पवित्र अग्नि के सामने सात फेरे लेकर और ज़िंदगी भर साथ निभाने के सात वचन देकर, हमारे आदित्य और चेतना एक-दूसरे के हो जाएंगे और अपने नए जीवन की सुंदर शुरुआत करेंगे।
+          </p>
+          <div class="flex items-center justify-between text-[11px] md:text-xs font-cinzel text-maroon-900 bg-amber-50 p-2.5 rounded-lg border border-amber-300">
+            <span>📍 Venue: Gulabo Devi, Jaigaon</span>
+            <span class="text-amber-800 font-bold">Divine Muhurat: 10:30 PM 🕉️</span>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 7: VENUE REVELATION
+         Destination card for Gulabo Devi, Jaigaon with Clean Local Image Slot
+         and Functional "OPEN IN MAPS" button linked to Google Maps
+         ======================================================================= -->
+    <section class="py-10 md:py-14 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-[#5B0E17] via-[#5B0E17] to-[#3A070D] text-white relative">
+      
+      <div class="text-center mb-6">
+        <span class="font-cinzel text-xs md:text-sm tracking-[0.25em] uppercase text-amber-300 font-bold">The Destination</span>
+        <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-amber-100 mt-1">VENUE & DIRECTIONS</h2>
+        <div class="w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <!-- Destination Card for Gulabo Devi, Jaigaon -->
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-amber-400/50 shadow-2xl w-full max-w-md md:max-w-lg mx-auto p-3 sm:p-4">
+        
+        <!-- Clean Local Image Slot: Venue Photo -->
+        <div class="relative w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto my-4 overflow-hidden rounded-2xl border-2 border-[#ECC876]/70 shadow-lg bg-[#3A070E] flex items-center justify-center p-1 group">
+          <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none pointer-events-none -z-0">
+            <span class="text-3xl mb-1 opacity-80">🏛️</span>
+            <span class="font-cinzel text-xs md:text-sm text-amber-200/70 uppercase tracking-widest font-bold">Gulabo Devi, Jaigaon</span>
+            <span class="font-cinzel text-[10px] text-amber-300/50 uppercase tracking-wider mt-0.5">Wedding Destination Venue</span>
+            <span class="text-[10px] text-amber-300/40 italic mt-1 font-mono">images/venue.jpg</span>
+          </div>
+          
+          <img src="images/venue.jpg" 
+               alt="Gulabo Devi, Jaigaon - Wedding Destination" 
+               loading="lazy"
+               class="w-full h-auto max-h-[380px] md:max-h-[440px] object-contain block mx-auto rounded-xl relative z-10 transition-transform duration-700 group-hover:scale-[1.01]"
+               onerror="this.style.display='none'">
+        </div>
+
+        <!-- Venue Title Header Band -->
+        <div class="w-full max-w-[85%] sm:max-w-xs md:max-w-sm mx-auto bg-gradient-to-r from-[#2A0408] via-[#3A070D] to-[#2A0408] px-4 py-2.5 rounded-xl border border-amber-400/30 text-center z-20 relative mb-4">
+          <span class="px-2 py-0.5 rounded text-[10px] md:text-xs font-cinzel font-bold bg-amber-400 text-maroon-950 uppercase inline-block">Wedding Destination</span>
+          <h3 class="font-cinzel text-lg md:text-xl font-bold text-white mt-1">Gulabo Devi</h3>
+          <p class="text-xs md:text-sm text-amber-200/90 font-cormorant">Jaigaon, Alipurduar, West Bengal</p>
+        </div>
+
+        <!-- Venue Details & Functional Map Button -->
+        <div class="p-2 sm:p-3 space-y-4">
+          <div class="flex items-start space-x-3 text-xs md:text-sm text-amber-100/95">
+            <span class="text-base text-amber-400">📍</span>
+            <div>
+              <strong class="block font-cinzel text-amber-300">Venue Address:</strong>
+              <span>Gulabo Devi, Jaigaon, West Bengal — 736182</span>
+            </div>
+          </div>
+
+          <!-- Functional "OPEN IN MAPS" Button Linked to Google Maps -->
+          <a href="https://maps.google.com/?q=Gulabo+Devi+Jaigaon" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#ECC876] via-[#E5A93C] to-[#FBF0B9] text-maroon-950 font-cinzel font-extrabold text-xs md:text-sm tracking-[0.2em] uppercase text-center shadow-lg hover:shadow-gold-glow transition-all transform hover:-translate-y-0.5">
+            🗺️ OPEN IN GOOGLE MAPS
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         FOOTER: BLESSINGS & CREDITS
+         ======================================================================= -->
+    <footer class="bg-[#2A0408] text-amber-200/80 py-8 px-6 text-center border-t border-amber-400/40">
+      
+      <!-- Monogram -->
+      <div class="w-12 h-12 rounded-full border border-amber-400/80 flex items-center justify-center mx-auto mb-2 bg-[#3A070D] p-1.5 overflow-hidden shadow-sm">
+        <img src="images/logo.png" alt="Aditya & Chetna Monogram" class="envelope-logo-img w-full h-full object-contain" />
+      </div>
+
+      <p class="font-vibes text-3xl text-amber-100 mb-1">Aditya & Chetna</p>
+      <p class="font-cinzel text-xs md:text-sm tracking-widest text-amber-300 uppercase font-bold">#AdityaWedsChetna • December 2026</p>
+      
+      <p class="font-cormorant text-xs md:text-sm text-amber-200/70 mt-3 max-w-xs md:max-w-sm mx-auto italic">
+        "Two souls united by destiny and sacred vows. We eagerly await your arrival to celebrate our happily ever after."
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Vanilla JavaScript Controller -->
+  <script src="script.js"></script>
+</body>
+</html>
